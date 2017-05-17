@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin-ext')
+
+$btn-base-color: #19B5FE
+$igraweb-gray: #c9c9c9
+$danger: rgb(199, 1, 44)
+
+@font-face
+  font-family: 'icon-worksregular'
+  src: url('../fonts/icon-works-webfont.eot')
+  src: url('../fonts/icon-works-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/icon-works-webfont.woff') format('woff'), url('../fonts/../fonts/icon-works-webfont.ttf') format('truetype'), url('../fonts/icon-works-webfont.svg#icon-worksregular') format('svg')
+  font-weight: normal
+  font-style: normal
+
+=btn
+  transition: all 0.3s ease
+  display: inline-block
+  font:
+    family: 'Roboto', sans-serif
+    size: 14px
+  padding: 10px 20px
+  background-color: $btn-base-color
+  border-radius: 2px
+  box-shadow: 0px 0px 5px rgba(0,0,0,.2)
+  border: 0px
+  margin-right: 5px
+  cursor: pointer
+  color: #fff
+  &:hover
+    background-color: darken($btn-base-color, 10%)
+    
+=btn-green
+  background-color: #00B16A
+=btn-red
+  background-color: red
+
+
+
+*
+  box-sizing: border-box
+
+body
+  color: #333
+
+.igraweb-icon
+  font-family: icon-worksregular
+  font-size: 25px
+  vertical-align: middle
+  margin-right: 5px
+
+.igraweb-active
+  .igraweb-actions
+    display: block
+
+.igraweb-actions
+  display: none
+
+// move this to styles/modal
+
+.igraweb-modal-container
+  font-size: 14px
+  display: flex
+  justify-content: center
+  align-items: center
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  min-height: 100vh
+  background-color: rgba(0, 0, 0, 0.3)
+  z-index: 10
+
+.igraweb-modal
+  font-family: 'Roboto', sans-serif
+  background-color: #fff
+  border: 0px
+  border-radius: 2px
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.32)
+  max-width: calc(100% - 20px)
+  margin: 8px
+  max-height: 95vh
+  overflow: auto
+  .modal-body, .model-actions
+    padding: 20px 20px
+    border-bottom: 1px solid $igraweb-gray
+  .modal-title
+    padding: 20px 20px 0px 20px
+    border-bottom: 1px solid $igraweb-gray
+    .modal-close-button
+      float: right
+      cursor: pointer
+      font-size: 18px
+      color: $igraweb-gray
+    h2
+      font-weight: normal
+      color: $igraweb-gray
+    h1, h2, h3, h4, h5, h6
+      margin-bottom: 10px
+      margin-top: 0
+
+.igraweb-modal-xs
+  width: 300px
+
+.igraweb-modal-sm
+  width: 500px
+
+.igraweb-modal-md
+  width: 700px
+
+.igraweb-modal-lg
+  width: 900px
+
+.igraweb-modal-xl
+  width: 1200px
+
+.igraweb-button
+  +btn
+
+.igraweb-modal, .igraweb-aside
+  button, input[type="submit"]
+    +btn
+    &[id*="CREATE"], &[id*="SAVE"]
+      +btn-green
+  
+// move to styles/text_editor
+.igraweb-text-editor, .igraweb-code-editor
+  width: 100%
+  min-height: 250px
+
+// move to styles/helpers
+.igraweb-flex-row
+  display: flex
+  justify-content: space-around
+  flex-wrap: wrap
+.igraweb-content-tabs
+  a
+    text-decoration: none
+    display: block
+    padding: 5px 20px
+    color: #333
+    background-color: lighten($igraweb-gray, 15%)
+    &:hover
+      background-color: $igraweb-gray
+.igraweb-flex-item-4
+  flex: 0 0 20%
+
+.igraweb-thumbnail
+  border: 1px solid #c5c5c5
+  border-radius: 2px
+  padding: 4px
+  margin: 4px
+  cursor: pointer
+  max-width: 100%
+  & > div
+    max-width: 100%
+    overflow: hidden
+  h1, h2, h3, h4, h5, h6
+    margin-top: 8px
+  &:hover, &[selected]
+    background-color: rgba(0, 0, 0, 0.1)
+
+.igraweb-thumbnail-content
+  display: flex
+  justify-content: center
+
+// move to styles/forms
+
+.igraweb-form
+  margin: 4px 0
+  .igraweb-flex-row
+    input, textarea, select, .igraweb-button
+      flex: 1 0 auto
+      width: auto
+      margin-right: 4px
+  input, textarea, select, .igraweb-button
+    width: 100%
+    margin-bottom: 16px
+    font-size: 16px
+  input[type=search], input[type=email], input[type=password], input[type=text], textarea
+    font:
+      family: 'Roboto', sans-serif
+      size: 14px
+    border: 1px solid $igraweb-gray
+    border-radius: 2px
+    padding: 8px 16px
+    &.igraweb-has-error
+      color: $danger
+      border-color: $danger
+      background-color: rgba($danger, 0.1)
+  label
+    font-weight: bold
+    display: block
+  .igraweb-form-error
+    color: $danger
+  .igraweb-has-error
+    border-color: $danger
+
+.igraweb-flex-edge
+  justify-content: space-between
+
+.igraweb-row-padding-md
+  padding-top: 16px
+  padding-bottom: 16px
+
+/* Rethink this */
+.igraweb-authenticated
+  [data-igraweb-section]:hover
+    position: relative
+    &:before
+      content: 'Edit section'
+      padding: 4px 8px
+      background-color: #c5c5c5
+      border: 1px solid #333
+      font-size: 80%
+      position: absolute
+      top: -24px
+
+// Move to components/aside
+
+.igraweb-aside-container
+  position: relative
+
+.igraweb-aside
+  transition: all 0.4s
+  position: absolute
+  width: 300px
+  max-width: 95%
+  top: 0
+  bottom: 0
+  z-index: 8
+
+  .igraweb-aside-inner
+    padding: 24px 16px
+    background-color: #efefef
+    box-shadow: 0px 0px 5px rgba(0,0,0,.2)
+
+  &.igraweb-aside-left
+    left: 0
+    &.igraweb-hidden
+      left: -400px
+    &:after
+      left: -408px
+  &:after
+    content: 'EDIT PAGE'
+    position: absolute
+    display: inline-block
+    padding: 8px 16px
+    top: 0
+    background-color: #efefef
+    border: 1px solid #efefef
+    border-radius: 2px
+    cursor: pointer
+
+  &.igraweb-aside-left.igraweb-hidden:after
+    left: 408px
+  

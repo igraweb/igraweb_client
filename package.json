@@ -1,0 +1,11 @@
+{
+  "name": "igraweb_client",
+  "version": "0.0.1",
+  "description": "A JavaScript Client for loading and updating data on the Igraweb Content API.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jphager2, bendis, masak",
+  "license": "MIT"
+}
