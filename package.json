@@ -1,6 +1,6 @@
 {
   "name": "igraweb_client",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A JavaScript Client for loading and updating data on the Igraweb Content API.",
   "main": "index.js",
   "scripts": {
