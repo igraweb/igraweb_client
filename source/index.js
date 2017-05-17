@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
 
+import babelPolyfill from 'babel-polyfill';
+
 import config from './config';
 
 import pages from './repositories/pages';

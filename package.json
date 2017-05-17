@@ -2,14 +2,20 @@
   "name": "igraweb_client",
   "version": "0.0.5",
   "description": "A JavaScript Client for loading and updating data on the Igraweb Content API.",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel source --presets babel-preset-es2015 --out-dir dist"
   },
   "author": "jphager2, bendis, masak",
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "brace": "^0.10.0",
     "quill": "^1.2.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
