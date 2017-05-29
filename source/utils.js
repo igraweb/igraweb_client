@@ -7,6 +7,8 @@ import rest from './utils/rest';
 import currentUser from './utils/current_user';
 import router from './router';
 
+var successStatuses = [200, 304];
+
 /**
  * These are common utilies used in the app, especially for common handlers
  */
@@ -117,7 +119,7 @@ var utils = {
   handleFetchResponse(response) {
     var status = response.status;
 
-    if (status === 200) {
+    if (successStatues.include(status)) {
       return response.json();
     } else if (status === 404){
       return new Promise(function(resolve) {
