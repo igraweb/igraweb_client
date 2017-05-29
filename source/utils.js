@@ -119,7 +119,7 @@ var utils = {
   handleFetchResponse(response) {
     var status = response.status;
 
-    if (successStatues.include(status)) {
+    if (successStatuses.include(status)) {
       return response.json();
     } else if (status === 404){
       return new Promise(function(resolve) {
