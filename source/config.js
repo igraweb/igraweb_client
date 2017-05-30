@@ -87,6 +87,11 @@ var config = {
 
       return new Modal(...arguments);
     },
+    Tooltip() {
+      var Tooltip = require('./components/tooltip').default;
+
+      return new Tooltip(...arguments);
+    },
     LoginModal() {
       var LoginModal = require('./components/login_modal').default;
 
