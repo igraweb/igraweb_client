@@ -194,11 +194,11 @@ var confirmEditChoice = function(model) {
     openSlotEditor(model);
   });
 
-  if (model.content) {
+  if (model.content && model.contentNode) {
     modal.action('UPDATE CONTENT', function(modal) {
       modal.remove();
       model.contentActions.forEach(function callContentActions(callback) {
-        callback(model.content);
+        callback.call(model.contentNode, model.content);
       });
     });
   }
