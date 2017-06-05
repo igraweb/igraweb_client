@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-import babelPolyfill from 'babel-polyfill';
+import './polyfills';
 
 import config from './config';
 
