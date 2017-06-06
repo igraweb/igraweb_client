@@ -34,7 +34,7 @@ var SectionForm = function(model) {
       this.form = form;
 
       this.form.innerHTML = this.template();
-      igraweb.plugins.codeEditor(form);
+      config.plugins.codeEditor(form);
     },
 
     validate() {

@@ -28,7 +28,7 @@ var EmbedForm = function(model) {
     build(form) {
       this.form = form;
       form.innerHTML = this.template();
-      igraweb.plugins.codeEditor(form);
+      config.plugins.codeEditor(form);
     },
 
     validate() {

@@ -1,5 +1,7 @@
 /*jshint esversion: 6 */
 
+import config from '../config';
+
 import Errors from './errors';
 import form from './form';
 
@@ -26,7 +28,7 @@ var TextForm = function(model) {
     build(form) {
       this.form = form;
       form.innerHTML = this.template();
-      igraweb.plugins.textEditor(form);
+      config.plugins.textEditor(form);
     },
 
     validate() {

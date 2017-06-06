@@ -132,7 +132,7 @@ var SectionForm = function(model) {
       Object.values(this.afterBuildCallbacks).forEach(function(fn) {
         fn();
       });
-      igraweb.plugins.codeEditor(this.form);
+      config.plugins.codeEditor(this.form);
     },
 
     validate() {
