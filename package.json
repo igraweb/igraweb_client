@@ -11,14 +11,13 @@
   "author": "jphager2, bendis, masak",
   "license": "MIT",
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
-    "brace": "^0.10.0",
-    "quill": "^1.2.4",
-    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "brace": "^0.10.0",
+    "quill": "^1.2.4",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.0",
