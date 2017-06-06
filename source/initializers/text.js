@@ -72,10 +72,16 @@ var inlineTextEditor = function(node, model) {
     node.innerHTML = editor.outerHTML;
 
     tooltip.action('SAVE', function(tooltip) {
-      alert(node.querySelector('.igraweb-text-editor').getContent());
-      igraweb.replaceOuterHTML(node, model.html);
-      node.removeEventListener('mouseenter', tooltipShowListener);
-      node.removeEventListener('mouseleave', tooltipHideListener);
+      var newContent = node.querySelector('.igraweb-text-editor').getContent();
+      model.update({ content: newContent }).then(function(model) {
+        model.render().then(function(html) {
+          document.querySelectorAll(model.selector).forEach(function(node) {
+            igraweb.replaceOuterHTML(node, html);
+          });
+          node.removeEventListener('mouseenter', tooltipShowListener);
+          node.removeEventListener('mouseleave', tooltipHideListener);
+        });
+      });
     });
 
     node.eventListeners = [];
