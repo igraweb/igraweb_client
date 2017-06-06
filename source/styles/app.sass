@@ -54,6 +54,26 @@ body
 .igraweb-actions
   display: none
 
+// move this to styles/tooltip
+.igraweb-tooltip-container
+  position: relative
+
+  .igraweb-tooltip
+    background-color: rgba(0, 0, 0, 0.7)
+    font-weight: bold
+    color: #fff 
+    position: absolute
+    min-height: 24px
+    padding: 8px
+    bottom: 8px
+    left: 0
+    border-radius: 2px
+    button
+      background: transparent
+      border: transparent
+    &.igraweb-hidden
+      display: none
+
 // move this to styles/modal
 
 .igraweb-modal-container

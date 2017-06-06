@@ -159,13 +159,16 @@ var publicClient = {
    */
   replaceOuterHTML(node, html) {
     var div = document.createElement('div');
+    var newNode;
+
     div.innerHTML = html;
+    newNode = div.firstChild;
 
     this.initNodes(div);
 
-    node.parentNode.replaceChild(div.firstChild, node);
+    node.parentNode.replaceChild(newNode, node);
 
-    return html;
+    return newNode;
   },
 
   config,

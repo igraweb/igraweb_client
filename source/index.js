@@ -91,7 +91,6 @@ var igraweb = {
             _this.pages
               .find(uid, { fetch: false })
               .then(function loadPage(page) {
-                console.log(`pageNode: ${pageNode}`);
                 page.buildForm(pageNode);
               });
           } else {
@@ -185,7 +184,7 @@ var igraweb = {
 
         node = e.target.closest('.igraweb-node');
         
-        if (!node) {
+        if (!node || node.classList.contains('igraweb-no-listeners')) {
           return true;
         }
 
@@ -213,6 +212,7 @@ var igraweb = {
               .find(sectionUid, slotUid)
               .then(function(slot) {
                 slot.content = model;
+                slot.contentNode = node;
                 slot.contentActions = contentActions;
                 listenerCaller(slotNode, slot);
               });
