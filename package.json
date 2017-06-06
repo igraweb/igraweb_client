@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "(babel source --presets babel-preset-es2015 --plugins transform-object-assign --out-dir dist) && (cp -r ./source/styles ./dist) && (cp -r ./source/fonts ./dist) && (cp -r ./source/fonts .)",
+    "build": "(rm -r dist) && (babel source --presets babel-preset-es2015 --plugins transform-object-assign --out-dir build) && (mkdir dist) && (sass source/styles/app.sass dist/igraweb.css) && (cp -r ./source/fonts ./dist) && ( webpack build/index.js dist/index.js) && (webpack build/public_client.js dist/public_client.js) && (rm -r build)",
     "prepublish": "npm run build"
   },
   "author": "jphager2, bendis, masak",
@@ -13,11 +13,14 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "brace": "^0.10.0",
-    "quill": "^1.2.4"
+    "quill": "^1.2.4",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-preset-es2015": "^6.24.1",
+    "node-sass": "^4.5.3",
+    "whatwg-fetch": "^2.0.3"
   }
 }
