@@ -357,6 +357,3 @@ var igraweb = {
 };
 
 export default igraweb;
-
-// TODO: Remove this
-window.igraweb = igraweb;
