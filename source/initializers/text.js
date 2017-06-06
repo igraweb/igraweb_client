@@ -83,6 +83,9 @@ var inlineTextEditor = function(node, model) {
         });
       });
     });
+    tooltip.action('CANCEL', function(tooltip) {
+      igraweb.replaceOuterHTML(node, model.html);
+    });
 
     node.eventListeners = [];
 
