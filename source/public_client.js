@@ -1,7 +1,5 @@
 /*jshint esversion: 6 */
 
-import './polyfills';
-
 import config from './config';
 
 import pages from './repositories/pages';
