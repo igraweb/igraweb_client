@@ -83,6 +83,13 @@ var inlineTextEditor = function(node, model) {
         });
       });
     });
+    tooltip.action('CANCEL', function(tooltip) {
+      igraweb.replaceOuterHTML(node, model.html);
+    });
+    tooltip.action('ADVANCED', function(tooltip) {
+      igraweb.replaceOuterHTML(node, model.html);
+      openTextEditor(model);
+    });
 
     node.eventListeners = [];
 
@@ -106,7 +113,6 @@ var inlineTextEditor = function(node, model) {
 igraweb.registerModelListener('text', 'click', function(model) {
   var node = this;
 
-  // openTextEditor(model);
   inlineTextEditor(node, model);
 });
 
