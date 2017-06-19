@@ -108,6 +108,17 @@ var config = {
       return new Errors(...arguments);
     },
   },
+
+  resources: {
+    page: 'pages',
+    section: 'sections',
+    text: 'texts',
+    embed: 'embeds',
+    image: 'images',
+    slot: 'slots',
+  },
+
+  inlineResources: [],
 };
 
 export default config;

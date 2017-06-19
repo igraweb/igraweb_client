@@ -6,7 +6,9 @@ const TextForm = igraweb.components.TextForm;
 const Modal = igraweb.components.Modal;
 const Tooltip = igraweb.components.Tooltip;
 
-const { logError, currentUser } = igraweb.utils;
+const { logError, currentUser, trigger } = igraweb.utils;
+
+igraweb.config.inlineResources.push('text');
 
 var openTextEditor = function(model) {
   if (model.isPersisted()) {
@@ -56,12 +58,12 @@ var buildTextEditor = function(model) {
   return false;
 };
 
-var inlineTextEditor = function(node, model) {
+var inlineTextEditor = function(node, model, slotNode) {
   model.render().then(function() {
     var editor = document.createElement('div');
     var tooltip = Tooltip();
-    var tooltipShowListener;
-    var tooltipHideListener;
+    var clickOutsideListener;
+    var close;
 
     node = igraweb.replaceOuterHTML(node, model.html);
 
@@ -71,38 +73,59 @@ var inlineTextEditor = function(node, model) {
     editor.innerHTML = node.innerHTML;
     node.innerHTML = editor.outerHTML;
 
+    close = function() {
+      document.removeEventListener('click', clickOutsideListener);
+
+      model.html = null;
+      model.render().then(function(html) {
+        document.querySelectorAll(model.selector).forEach(function(node) {
+          igraweb.replaceOuterHTML(node, html);
+        });
+      });
+    };
+
     tooltip.action('SAVE', function(tooltip) {
       var newContent = node.querySelector('.igraweb-text-editor').getContent();
       model.update({ content: newContent }).then(function(model) {
-        model.render().then(function(html) {
-          document.querySelectorAll(model.selector).forEach(function(node) {
-            igraweb.replaceOuterHTML(node, html);
-          });
-          node.removeEventListener('mouseenter', tooltipShowListener);
-          node.removeEventListener('mouseleave', tooltipHideListener);
-        });
+        close();
       });
     });
-    tooltip.action('CANCEL', function(tooltip) {
-      igraweb.replaceOuterHTML(node, model.html);
-    });
+
     tooltip.action('ADVANCED', function(tooltip) {
-      igraweb.replaceOuterHTML(node, model.html);
+      close();
       openTextEditor(model);
     });
+    
+    if (slotNode) {
+      tooltip.action('UPDATE SLOT', function(tooltip) {
+        close();
+        trigger(slotNode, 'openEditor');
+      });
+    }
 
-    node.eventListeners = [];
+    tooltip.action('CANCEL', function(tooltip) {
+      close()
+    });
 
-    tooltipShowListener = node.addEventListener('mouseenter', function(e) {
+    node.addEventListener('mouseenter', function(e) {
       tooltip.show();
     });
 
-    tooltipShowListener = node.addEventListener('mouseleave', function(e) {
+    node.addEventListener('mouseleave', function(e) {
       tooltip.hide();
     });
 
-    node.eventListeners.push(tooltipShowListener);
-    node.eventListeners.push(tooltipHideListener);
+    clickOutsideListener = function(e) {
+      if (e.target.closest('.igraweb-node') === node) {
+        return;
+      }
+
+      e.preventDefault();
+      close();
+      return false;
+    };
+
+    document.addEventListener('click', clickOutsideListener);
 
     tooltip.build(node);
 
@@ -110,10 +133,10 @@ var inlineTextEditor = function(node, model) {
   });
 };
 
-igraweb.registerModelListener('text', 'click', function(model) {
+igraweb.registerModelListener('text', 'click', function(model, slotNode) {
   var node = this;
 
-  inlineTextEditor(node, model);
+  inlineTextEditor(node, model, slotNode);
 });
 
 igraweb.registerModelListener('text', 'mouseover', function(model) {});

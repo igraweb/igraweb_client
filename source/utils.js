@@ -2,7 +2,6 @@
 
 import querystring from 'querystring';
 
-import resources from './utils/resources';
 import rest from './utils/rest';
 import currentUser from './utils/current_user';
 import router from './router';
@@ -37,8 +36,10 @@ var utils = {
    * @method
    * @public
    */
-  resourceTypeFor(node) {
+  resourceTypeFor(node, resources, inlineResources) {
     var attr;
+    resources = resources || {};
+    inlineResources = inlineResources || [];
 
     if (!node.classList.contains('igraweb-node')) {
       return;
@@ -52,6 +53,7 @@ var utils = {
           repositoryName: resources[resourceName],
           modelName: resourceName,
           uid: node.getAttribute(attr),
+          inline: inlineResources.includes(resourceName),
         };
       }
     }
@@ -148,11 +150,6 @@ var utils = {
    * See {{./utils/current_user.js}}
    */
   currentUser,
-
-  /**
-   * Map of singular to plural resource names
-   */
-  resources,
 
   /**
    * Authenticated JSON API REST calls

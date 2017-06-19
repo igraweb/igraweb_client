@@ -17,10 +17,11 @@ import publicClient from './public_client';
 const {
   logError,
   currentUser,
-  resources,
   router,
   resourceTypeFor,
 } = Utils;
+
+const { resources, inlineResources } = config;
 
 const { loadContent, initNodes, replaceOuterHTML, replaceInnerHTML } = publicClient;
 
@@ -165,16 +166,19 @@ var igraweb = {
         var repository;
         var model;
         var modelName;
+        var inlineContent;
         var typeListeners = listeners[eventName] || {};
         var modelListeners;
         var listenerCaller;
         var promise;
 
         listenerCaller = function(node, model) {
+          var args = Array.from(arguments).slice(2);
+
           modelListeners = typeListeners[model.model_name] || [];
 
           modelListeners.forEach(function(callback) {
-            callback.call(node, model);
+            callback.call(node, model, ...args);
           });
         };
 
@@ -194,16 +198,17 @@ var igraweb = {
           slotNode = igrawebParentNode;
         }
 
-        resource = resourceTypeFor(node);
+        resource = resourceTypeFor(node, resources, inlineResources);
         repository = _this[resource.repositoryName];
         modelName = resource.modelName;
+        inlineContent = resource.inline;
 
         var callContentOrSlotListeners = function(model) {
           var contentActions;
           var sectionUid;
           var slotUid;
 
-          if (slotNode && typeListeners.slot) {
+          if (slotNode && typeListeners.slot && !inlineContent) {
             contentActions = typeListeners[resource.modelName] || [];
 
             sectionUid = slotNode.getAttribute('data-igraweb-section-id');
@@ -217,7 +222,7 @@ var igraweb = {
                 listenerCaller(slotNode, slot);
               });
           } else {
-            listenerCaller(node, model);
+            listenerCaller(node, model, slotNode);
           }
         };
 
@@ -287,7 +292,7 @@ var igraweb = {
    * @property resources
    * @public
    */
-  resources,
+  resources: config.resources,
 
   /**
    * Pages repository

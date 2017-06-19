@@ -11,9 +11,10 @@ import Utils from './utils';
 
 const {
   logError,
-  resources,
   router,
 } = Utils;
+
+const { resources } = config
 
 var publicClient = {
   load() {
