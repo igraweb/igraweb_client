@@ -211,3 +211,4 @@ var confirmEditChoice = function(model) {
 };
 
 igraweb.registerModelListener('slot', 'click', confirmEditChoice);
+igraweb.registerModelListener('slot', 'openEditor', openSlotEditor);
