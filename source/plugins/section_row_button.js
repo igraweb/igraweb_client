@@ -41,8 +41,8 @@ igraweb.registerInitializer('addSlotToSectionTemplate', function() {
   if (pageNode && uid) {
     igraweb.pages.find(uid).then(function(page) {
       if (page.isPersisted()) {
-        igraweb.sections.find(uid).then(function fetchTemplate(section) {
-          section.template().then(function (template) {
+        page.section().then(function(section) {
+          section.template().then(function(template) {
             insertAddSlotButton(pageNode, template);
           });
         });

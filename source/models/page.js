@@ -5,6 +5,7 @@ import config from '../config';
 import Utils from '../utils';
 import base from './base';
 import pages from '../repositories/pages';
+import sections from '../repositories/sections';
 
 const PageForm = config.components.PageForm;
 const Aside = config.components.Aside;
@@ -122,6 +123,20 @@ function Page(json) {
 
     aside.form = form;
   };
+
+  Object.assign(this, {
+    section() {
+      var section = this.relationships.section;
+
+      return new Promise(function(resolve, reject) {
+        if (!section) {
+          reject();
+        }
+
+        sections.find(section.data.id).then(resolve);
+      });
+    },
+  });
 
   this.repository = pages;
 }
