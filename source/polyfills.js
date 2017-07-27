@@ -1,3 +1,10 @@
+/**
+ * ONLY LOAD THIS ONCE
+ *
+ * These include initializations of polyfills required for the igraweb
+ * client.
+ */
+
 (function () {
   if ( typeof NodeList.prototype.forEach === "function" ) return false;
   NodeList.prototype.forEach = Array.prototype.forEach;
