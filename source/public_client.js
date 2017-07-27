@@ -17,6 +17,12 @@ const {
 const { resources } = config
 
 var publicClient = {
+  /**
+   * Load data-igraweb-* tags
+   *
+   * @method load
+   * @public
+   */
   load() {
     var _this = this;
     return new Promise(function(resolve) {
@@ -27,6 +33,7 @@ var publicClient = {
       resolve();
     });
   },
+
   /**
    * This should be called before loading the page so it doesn't
    * reload content rendered by the page
@@ -98,6 +105,12 @@ var publicClient = {
     });
   },
 
+  /**
+   * Load the data-igraweb-page node
+   *
+   * @method loadPage
+   * @private
+   */
   loadPage() {
     var _this = this;
     var pageNode = document.querySelector('[data-igraweb-page]');
@@ -172,6 +185,10 @@ var publicClient = {
     return newNode;
   },
 
+  /**
+   * @property config
+   * @public
+   */
   config,
 };
 
