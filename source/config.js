@@ -3,28 +3,82 @@
 import textEditor from './plugins/text_editor';
 import codeEditor from './plugins/code_editor';
 
+/**
+ * Shared config for the igraweb client.
+ */
 var config = {
+  /**
+   * The URL or relative path to the igraweb API
+   *
+   * @property api
+   * @required
+   * @public
+   */
   api: '/igraweb/',
 
+  /**
+   * The API site key for the igraweb API.
+   *
+   * @property api_site_key
+   * @required
+   * @public
+   */
   api_site_key: 'enter-your-key',
 
+  /**
+   * Whether or not the test suite should be run on every request.
+   *
+   * @property runTests
+   * @default true
+   * @public
+   */
   runTests: true,
 
+  /**
+   * An object of listeners. (See `igraweb.loadListeners` and
+   * `igraweb.registerModelListener`)
+   *
+   * @property listeners
+   * @default {}
+   * @public
+   */
   listeners: {},
 
-  // TODO: Think about how this makes sense in relation to initializers and
-  //       components as well.
+  /**
+   * TODO: Think about how this makes sense in relation to initializers and
+   *       components as well.
+   *
+   * An object of plugins that can be called by name.
+   *
+   * @property plugins
+   * @public
+   */
   plugins: {
     textEditor,
     codeEditor,
   },
 
+  /**
+   * An object of routes that can be looked up by name
+   *
+   * This is where you can set the login, loginSuccess and notFound routes.
+   *
+   * @property routes
+   * @public
+   */
   routes: {
     login: '/login',
     loginSuccess: '/',
     notFound: '/',
   },
 
+  /**
+   * Default initializers to call when igraweb loads with an authenticated
+   * user.
+   *
+   * @property initializers
+   * @private
+   */
   initializers: {
     modal() {
       require('./initializers/modal');
@@ -46,6 +100,13 @@ var config = {
     },
   },
 
+  /**
+   * Default components to be used by igraweb. (See
+   * `igraweb.registerComponent`)
+   *
+   * @property components
+   * @private
+   */
   components: {
     ImageForm() {
       var ImageForm = require('./components/image_form').default;
@@ -109,6 +170,12 @@ var config = {
     },
   },
 
+  /**
+   * A mapping of resources from singularized to pluralized.
+   *
+   * @property resources
+   * @public
+   */
   resources: {
     page: 'pages',
     section: 'sections',
@@ -118,6 +185,12 @@ var config = {
     slot: 'slots',
   },
 
+  /**
+   * A list of inline resources. (See `igraweb.loadListeners`)
+   *
+   * @property inlineResources
+   * @public
+   */
   inlineResources: [],
 };
 
