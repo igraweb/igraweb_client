@@ -66,8 +66,18 @@ var igraweb = {
     });
   },
 
+  /**
+   * @method loadContent
+   * @private
+   */
   loadContent,
 
+  /**
+   * Load the data-igraweb-page tag
+   *
+   * @method
+   * @private
+   */
   loadPage() {
     var _this = this;
     var pageNode = document.querySelector('[data-igraweb-page]');
@@ -115,12 +125,25 @@ var igraweb = {
       .catch(logError);
   },
 
+  /**
+   * Load all registered initializers. (See `config.initializers` and
+   * `igraweb.registerInitializer`.)
+   *
+   * @method
+   * @private
+   */
   loadInitializers() {
     Object.values(this.initializers).forEach(function initialize(fn) {
       fn();
     });
   },
 
+  /**
+   * Run all tests. (See `config.runTests`.)
+   *
+   * @method
+   * @private
+   */
   loadTests() {
     require('./tests/router_test');
     require('./tests/models/collection_test');
@@ -144,10 +167,26 @@ var igraweb = {
     }
   },
 
+  /**
+   * @method initNodes
+   * @private
+   */
   initNodes,
 
   /**
-   * Add event listeners for resources
+   * Load all event listeners for resources
+   *
+   * If a resource has a slot, all events will fire on the slot, passing
+   * along the resource event callbacks as well, so the slot can trigger
+   * them if necessary or desired.
+   *
+   * If the resource is an "inline resource" (see config.inlineResource),
+   * then it has priority, and slot events can be triggered from the
+   * resource.
+   *
+   * NOTE: This is all very complicated. I really wish we could make it
+   * simpler. At the moment it is very hard to change because it is hard
+   * to understand.
    *
    * @method loadListeners
    * @private
@@ -244,23 +283,55 @@ var igraweb = {
   },
 
   /**
-   * Configurable plugins
-   *
    * @property plugins
    * @public
    */
   plugins: config.plugins,
 
+  /**
+   * @property listeners
+   * @public
+   */
   listeners: config.listeners,
 
+  /**
+   * @property initializers
+   * @public
+   */
   initializers: config.initializers,
 
+  /**
+   * Add an initializer function to be called when igraweb is loaded with
+   * an authenticated user.
+   *
+   * Default initializers can be overriden by providing the same name.
+   *
+   * @param {String} name
+   * @param fn {function} An initializer function
+   * @method
+   * @public
+   */
   registerInitializer(name, fn) {
     this.initializers[name] = fn;
   },
 
+  /**
+   * @property components
+   * @public
+   */
   components: config.components,
 
+  /**
+   * Add an component contructor function that can be called to initialize
+   * a component.
+   *
+   * Default components can be overriden by providing the same name.
+   *
+   * @param {String} name
+   * @param fn {function} A contructor function
+   * @method
+   * @public
+   */
   registerComponent(name, fn) {
     this.components[name] = fn;
   },
@@ -350,14 +421,30 @@ var igraweb = {
    */
   templates,
 
+  /**
+   * @property utils
+   * @public
+   */
   utils: Utils,
 
   /**
    * Igraweb config object
+   *
+   * @property config
+   * @public
    */
   config,
 
+  /**
+   * @method replaceOuterHTML
+   * @public
+   */
   replaceOuterHTML,
+
+  /**
+   * @method replaceInnerHTML
+   * @public
+   */
   replaceInnerHTML,
 };
 
