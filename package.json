@@ -5,8 +5,9 @@
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "(rm -r dist) && (babel source --presets babel-preset-es2015 --plugins transform-object-assign --out-dir dist) && (sass source/styles/app.sass dist/igraweb.css) && (cp -r ./source/fonts ./dist)",
-    "prepublish": "npm run build"
+    "build": "(rm -r dist) && (babel src --presets babel-preset-es2015 --plugins transform-object-assign --out-dir dist) && (sass src/styles/app.sass dist/igraweb.css) && (cp -r ./src/fonts ./dist)",
+    "prepublish": "npm run build",
+    "doc:server": "./node_modules/yuidocjs/lib/cli.js --server 5000 src"
   },
   "author": "jphager2, bendis, masak",
   "license": "MIT",
@@ -21,6 +22,7 @@
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.4",
-    "node-sass": "^4.5.3"
+    "node-sass": "^4.5.3",
+    "yuidocjs": "^0.10.2"
   }
 }

@@ -10,6 +10,8 @@ var successStatuses = [200, 304];
 
 /**
  * These are common utilies used in the app, especially for common handlers
+ *
+ * @class utils
  */
 var utils = {
   /**
@@ -17,7 +19,10 @@ var utils = {
    *
    * Adapted from http://stackoverflow.com/a/2706236/2536065
    *
-   * @method
+   * @param el A HTML element
+   * @param {String} type The name of an event type (e.g. 'click',
+   *   'mouseover')
+   * @method triggerEventListener
    * @public
    */
   triggerEventListener(el, type) {
@@ -26,14 +31,23 @@ var utils = {
     el.dispatchEvent(evObj);
   },
 
+  /**
+   * Alias for triggerEventListener
+   *
+   * @method trigger
+   * @public
+   */
   trigger() {
     return utils.triggerEventListener(...arguments);
   },
 
   /**
-   * Get igraweb resource type for node
+   * Get igraweb resource meta data for node
    *
-   * @method
+   * @param node A HTML element
+   * @param {Object} resources A map of resource names to repositories
+   * @param {Array} inlineResources A collection of "inline" resources
+   * @method resourceTypeFor
    * @public
    */
   resourceTypeFor(node, resources, inlineResources) {
@@ -60,17 +74,19 @@ var utils = {
   },
 
   /**
-   * @method
+   * Error handling callback
+   *
+   * @method logError
    * @public
    */
   logError(error) {
-    console.error(error);
+    console.error(error.message || error);
   },
 
   /**
-   * Build a query string from an object of params
+   * Build a query string from a (potentially nested) object of params
    *
-   * @method
+   * @method queryString
    * @public
    */
   queryString(params) {
@@ -79,6 +95,16 @@ var utils = {
     return querystring.stringify(flatParams);
   },
 
+  /**
+   * Flattens a nested object such that nested keys are in a nested query
+   * string format.
+   *
+   * @example
+   *   { foo: { bar: 'baz' } } => { 'foo[bar]': 'baz' }
+   *
+   * @method flattenQueryObject
+   * @private
+   */
   flattenQueryObject(obj, topLevel = true) {
     var flattened = {};
 
@@ -113,9 +139,9 @@ var utils = {
   },
 
   /**
-   * Pass on successful fetch requests 
+   * Pass on json from successful fetch requests or handle bad requests
    *
-   * @method
+   * @method handleFetchResponse
    * @public
    */
   handleFetchResponse(response) {
@@ -136,11 +162,14 @@ var utils = {
   },
 
   /**
-   * @method
+   * Handle request errors
+   *
+   * @param {Error, String} An error
+   * @method handleFetchError
    * @public
    */
   handleFetchError(error) {
-    console.error(error);
+    utils.logError(error);
     throw new Error(error);
   },
 
@@ -148,16 +177,29 @@ var utils = {
    * Authentication service
    *
    * See {{./utils/current_user.js}}
+   *
+   * @property currentUser
+   * @public
    */
   currentUser,
 
   /**
    * Authenticated JSON API REST calls
+   *
+   * See {{./utils/rest.js}}
+   *
+   * @property rest
+   * @public
    */
   rest,
 
   /**
-   * routing helper
+   * Routing helper
+   *
+   * See {{./router.js}}
+   *
+   * @property router
+   * @public
    */
   router,
 };
