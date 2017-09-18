@@ -225,13 +225,14 @@ body
   [data-igraweb-section]:hover
     position: relative
     &:before
-      content: 'Edit section'
-      padding: 4px 8px
-      background-color: #c5c5c5
+      background-color: rgba(#c5c5c5, 0.25)
       border: 1px solid #333
+      content: 'Edit Section ' attr(data-igraweb-section)
       font-size: 80%
-      position: absolute
-      top: -24px
+      padding: 4px 8px
+      cursor: pointer
+      display: block
+      margin-bottom: 2px
 
 // Move to components/aside
 

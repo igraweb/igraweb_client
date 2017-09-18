@@ -11,3 +11,7 @@
 3. Push to git (the above command creates a git tag for the version number)
 4. Then run `npm publish`. This will build the package and then push it to the npm registry.
 5. Now npm update or yarn upgrade will install the new package version.
+
+# TODO
+
+1. Come up with a better way to do section edit buttons on hover. Currently nested sections will overlap buttons, which makes it sometimes impossilbe to click on the edit section button.
