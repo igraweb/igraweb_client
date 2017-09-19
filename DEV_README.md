@@ -14,4 +14,5 @@
 
 # TODO
 
-1. Come up with a better way to do section edit buttons on hover. Currently nested sections will overlap buttons, which makes it sometimes impossilbe to click on the edit section button.
+1. Install Handlebars and replace all template strings with Handlebars templates.
+2. Embed fonts directly in dist/igraweb.css
