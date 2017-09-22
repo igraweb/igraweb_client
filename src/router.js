@@ -66,8 +66,11 @@ var router = {
    * @method redirect
    * @public
    */
-  redirect(pathOrPathName) {
-    var path = this.path(pathOrPathName);
+  redirect(pathOrPathName, options = {}) {
+    const { mount = true } = options;
+    let path = this.path(pathOrPathName);
+
+    if (mount) { path = config.mount + path; }
 
     this.navigator.replace(path);
   },

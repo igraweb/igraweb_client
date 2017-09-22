@@ -107,7 +107,7 @@ function Page(json) {
 
       form.submit().then(function(model) {
         if (model.slug) {
-          router.redirect(config.mount + model.slug);
+          router.redirect(model.slug);
         } else {
           router.reload();
         }

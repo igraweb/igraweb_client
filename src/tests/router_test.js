@@ -2,6 +2,7 @@
 
 import assert from 'assert';
 
+import config from '../config';
 import testHelper from './test_helper';
 import router from '../router';
 
@@ -13,16 +14,39 @@ var tests = {
     var path = '/oh/a/path';
     var originalNavigator = router.navigator;
 
-    router.navigator = {
+    router.navigator = Object.assign({}, originalNavigator, {
       replace(href) {
         calls.push(href);
       }
-    };
+    });
 
     router.redirect(path);
 
-    assert.deepEqual(calls, [path], 'router should redirect to the configured path');
+    assert.deepEqual(calls, [config.mount + path], 'router should redirect to the configured path');
 
+    router.navigator = originalNavigator;
+  },
+
+  test_redirect_outside_mount() {
+    const oldMount = config.mount;
+    const testMount = '/blah-blah-testing-mount';
+    const path = '/te/st/in/g';
+    var calls = [];
+    var originalNavigator = router.navigator;
+
+    config.mount = testMount;
+
+    router.navigator = Object.assign({}, originalNavigator, {
+      replace(href) {
+        calls.push(href);
+      }
+    });
+
+    router.redirect(path, { mount: false });
+
+    assert.deepEqual(calls, [path], 'router should redirect to path without mount');
+
+    config.mount = oldMount;
     router.navigator = originalNavigator;
   },
 
