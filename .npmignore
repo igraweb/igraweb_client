@@ -4,5 +4,4 @@ DEV_README.md
 webpack.config.js
 
 src/
-fonts/
 node_modules/
