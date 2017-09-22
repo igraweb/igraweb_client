@@ -8,6 +8,15 @@ import codeEditor from './plugins/code_editor';
  */
 var config = {
   /**
+   * The base path where the cms is mounted
+   *
+   * @property mount
+   * @required
+   * @public
+   */
+  mount: '/',
+
+  /**
    * The URL or relative path to the igraweb API
    *
    * @property api
