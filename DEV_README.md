@@ -15,4 +15,4 @@
 # TODO
 
 1. Install Handlebars and replace all template strings with Handlebars templates.
-2. Embed fonts directly in dist/igraweb.css
+2. add igraweb-styles or igraweb-root class to the beginning of all igraweb so that default styles are not infected by app styles (e.g. font-family)
