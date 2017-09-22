@@ -1,7 +1,8 @@
-src
 DEV_README.md
 .sass-cache
 .postcssrc.yml
 webpack.config.js
-fonts
-node_modules
+
+src/
+fonts/
+node_modules/
