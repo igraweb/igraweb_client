@@ -15,7 +15,7 @@ const Tooltip = function() {
   Object.assign(tooltip, {
     id: `igraweb-tooltip${Date.now()}`,
 
-    classNames: ['igraweb-tooltip'],
+    classNames: ['igraweb-root', 'igraweb-tooltip'],
 
     hidden: true,
 

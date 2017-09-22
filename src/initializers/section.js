@@ -38,7 +38,7 @@ var buildSectionEditor = function(model) {
 
   modal.model = model;
   modal.title = "<h2>Edit the content</h2>";
-  modal.body = '<form id="igraweb-editContent" class="igraweb-form"></form>';
+  modal.body = '<form id="igraweb-editContent" class="igraweb-root igraweb-form"></form>';
 
   modal.action('SAVE', function(modal) {
     modal.form.submit().then(function reloadContent(model) {
@@ -96,7 +96,7 @@ var buildTemplateModal = function(modal, template, onSave) {
   var form;
 
   templateModal.title = '<h2>Edit template</h2>';
-  templateModal.body = '<form id="igraweb-editTemplate" class="igraweb-form"></form>';
+  templateModal.body = '<form id="igraweb-editTemplate" class="igraweb-root igraweb-form"></form>';
 
   templateModal.action('SAVE', function submitForm(modal) {
     templateForm

@@ -101,7 +101,7 @@ var openSlotEditor = function(model) {
     <h3>Library <small>(choose from existing content)</small></h3>
     <div id="library"></div>
     <h3>Upload <small>(or create new content)</small></h3>
-    <form class="igraweb-form" id="newContent"></form>
+    <form class="igraweb-root igraweb-form" id="newContent"></form>
   `;
 
   modal.action('CREATE', function(modal) {

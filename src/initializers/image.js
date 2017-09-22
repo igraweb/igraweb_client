@@ -19,7 +19,7 @@ var buildImageEditor = function(model) {
 
   modal.model = model;
   modal.title = '<h2>Edit Image</h2>';
-  modal.body = '<form id="igraweb-editContent" class="igraweb-form"></form>';
+  modal.body = '<form id="igraweb-editContent" class="igraweb-root igraweb-form"></form>';
 
   modal.action('SAVE', function(modal) {
     modal.form.submit().then(function reloadContent(model) {

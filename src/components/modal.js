@@ -7,12 +7,11 @@
  * @public
  */
 const Modal = function() {
-  this.node = document.getElementById('igraweb-modal');
-
-  if (!this.node) {
-    document.body.insertAdjacentHTML('beforeend', '<div id="igraweb-modal"></div>');
-    this.node = document.getElementById('igraweb-modal');
+  if (!document.getElementById('igraweb-modal')) {
+    document.body.insertAdjacentHTML('beforeend', '<div id="igraweb-modal" class="igraweb-root"></div>');
   }
+
+  this.node = document.getElementById('igraweb-modal');
 
   Object.assign(this, {
     size: 'md',

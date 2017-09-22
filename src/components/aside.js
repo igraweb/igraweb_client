@@ -4,7 +4,7 @@ var Aside = function() {
   Object.assign(this, {
     id: `igraweb-aside-${Date.now()}`,
 
-    classNames: ['igraweb-aside', 'igraweb-aside-left'],
+    classNames: ['igraweb-root', 'igraweb-aside', 'igraweb-aside-left'],
 
     hide() {
       this.node.classList.add('igraweb-hidden');
