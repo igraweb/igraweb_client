@@ -15,5 +15,4 @@
 # TODO
 
 1. Install Handlebars and replace all template strings with Handlebars templates.
-2. add igraweb-styles or igraweb-root class to the beginning of all igraweb so that default styles are not infected by app styles (e.g. font-family)
-3. BUG: ACE editor will not allow form tags, because it is inside a form. See [https://github.com/froala/wysiwyg-editor/issues/984](https://github.com/froala/wysiwyg-editor/issues/984) for possible solutions. Probably the best solution would be to move it out of the form tag (or just dont use a form at all. It isnt really necessary)
+2. BUG: ACE editor will not allow form tags, because it is inside a form. See [https://github.com/froala/wysiwyg-editor/issues/984](https://github.com/froala/wysiwyg-editor/issues/984) for possible solutions. Probably the best solution would be to move it out of the form tag (or just dont use a form at all. It isnt really necessary)
