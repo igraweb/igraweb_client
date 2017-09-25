@@ -24,12 +24,11 @@ var publicClient = {
    * @public
    */
   load() {
-    var _this = this;
-    return new Promise(function(resolve) {
-      _this.loadContent(document);
-      _this.initNodes(document);
-      _this.loadPage().then(resolve);
-    });
+    return Promise.all([
+      this.loadContent(document),
+      this.initNodes(document),
+      this.loadPage()
+    ]);
   },
 
   /**
