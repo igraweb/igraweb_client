@@ -42,28 +42,22 @@ var igraweb = {
   load() {
     var _this = this;
 
-    return new Promise(function(resolve) {
-      if (config.runTests) {
-        _this.loadTests();
-      }
+    if (config.runTests) {
+      _this.loadTests();
+    }
 
-      if (router.isAt('login')) {
-        router.unauthorized();
-        return;
-      }
+    if (router.isAt('login')) {
+      router.unauthorized();
+      return;
+    }
 
-      if (currentUser()) {
-        _this.loadInitializers();
-        _this.loadListeners();
-        _this.loadAuthenticated();
-      }
+    if (currentUser()) {
+      _this.loadInitializers();
+      _this.loadListeners();
+      _this.loadAuthenticated();
+    }
 
-      _this.loadContent(document);
-      _this.initNodes(document);
-      _this.loadPage();
-
-      resolve();
-    });
+    return publicClient.load();
   },
 
   /**
