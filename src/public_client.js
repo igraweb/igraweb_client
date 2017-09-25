@@ -28,9 +28,7 @@ var publicClient = {
     return new Promise(function(resolve) {
       _this.loadContent(document);
       _this.initNodes(document);
-      _this.loadPage();
-
-      resolve();
+      _this.loadPage().then(resolve);
     });
   },
 
