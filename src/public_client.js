@@ -41,26 +41,30 @@ var publicClient = {
   loadContent(element) {
     var _this = this;
 
-    ['section', 'text', 'embed', 'image'].forEach(function loadResource(resource) {
-      var attr = `data-igraweb-${resource}`;
-      var selector = `[${attr}]`;
-      var repository = _this[resources[resource]];
+    return Promise.all(
+      ['section', 'text', 'embed', 'image'].map(function loadResource(resource) {
+        var attr = `data-igraweb-${resource}`;
+        var selector = `[${attr}]`;
+        var repository = _this[resources[resource]];
 
-      var nodes = element.querySelectorAll(selector);
+        var nodes = element.querySelectorAll(selector);
 
-      nodes.forEach(function initNode(node) {
-        var uid = node.getAttribute(attr);
+        return Promise.all(
+          nodes.map(function initNode(node) {
+            var uid = node.getAttribute(attr);
 
-        repository
-          .find(uid, { render_html: true })
-          .then(function replaceHTML(model) {
-            if (model.html) {
-              _this.replaceOuterHTML(node, model.html);
-            }
+            return repository
+              .find(uid, { render_html: true })
+              .then(function replaceHTML(model) {
+                if (model.html) {
+                  _this.replaceOuterHTML(node, model.html);
+                }
+              })
+              .catch(logError);
           })
-          .catch(logError);
-      });
-    });
+        );
+      })
+    );
   },
 
   /**
@@ -122,7 +126,7 @@ var publicClient = {
       return false;
     }
 
-    _this
+    return _this
       .pages
       .find(uid, { render_html: true })
       .then(function renderPage(page) {
