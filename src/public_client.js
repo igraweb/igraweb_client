@@ -50,7 +50,7 @@ var publicClient = {
         var nodes = element.querySelectorAll(selector);
 
         return Promise.all(
-          nodes.map(function initNode(node) {
+          Array.from(nodes).map(function initNode(node) {
             var uid = node.getAttribute(attr);
 
             return repository
