@@ -40,10 +40,8 @@ var igraweb = {
    * @public
    */
   load() {
-    var _this = this;
-
     if (config.runTests) {
-      _this.loadTests();
+      this.loadTests();
     }
 
     if (router.isAt('login')) {
@@ -52,12 +50,16 @@ var igraweb = {
     }
 
     if (currentUser()) {
-      _this.loadInitializers();
-      _this.loadListeners();
-      _this.loadAuthenticated();
+      this.loadInitializers();
+      this.loadListeners();
+      this.loadAuthenticated();
     }
 
-    return publicClient.load();
+    return Promise.all([
+      this.loadContent(document),
+      this.initNodes(document),
+      this.loadPage()
+    ]);
   },
 
   /**
