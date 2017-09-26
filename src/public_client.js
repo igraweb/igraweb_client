@@ -12,6 +12,7 @@ import Utils from './utils';
 const {
   logError,
   router,
+  trigger,
 } = Utils;
 
 const { resources } = config
@@ -24,11 +25,13 @@ var publicClient = {
    * @public
    */
   load() {
-    return Promise.all([
-      this.loadContent(document),
-      this.initNodes(document),
-      this.loadPage()
-    ]);
+    return Promise
+      .all([
+        this.loadContent(document),
+        this.initNodes(document),
+        this.loadPage()
+      ])
+      .then(() => trigger(document, 'igrawebContentLoaded'));
   },
 
   /**

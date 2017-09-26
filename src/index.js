@@ -19,6 +19,7 @@ const {
   currentUser,
   router,
   resourceTypeFor,
+  trigger,
 } = Utils;
 
 const { resources, inlineResources } = config;
@@ -55,11 +56,13 @@ var igraweb = {
       this.loadAuthenticated();
     }
 
-    return Promise.all([
-      this.loadContent(document),
-      this.initNodes(document),
-      this.loadPage()
-    ]);
+    return Promise
+      .all([
+        this.loadContent(document),
+        this.initNodes(document),
+        this.loadPage()
+      ])
+      .then(() => trigger(document, 'igrawebContentLoaded'));
   },
 
   /**
@@ -88,7 +91,7 @@ var igraweb = {
       return false;
     }
 
-    _this
+    return _this
       .pages
       .find(uid, { render_html: true })
       .then(function renderPage(page) {

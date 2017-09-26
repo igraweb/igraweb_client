@@ -2,22 +2,28 @@
 
 // TODO: Maybe "router" and "navigator" can be combined
 
-var navigator = {
+const location = window.location;
+
+const navigator = {
   reload() {
-    window.location.reload();
+    location.reload();
   },
 
   replace(href) {
-    window.location.href = href;
+    location.href = href;
   },
 
   href() {
-    return window.location.href;
+    return location.href;
   },
 
   path() {
-    return window.location.pathname;
+    return location.pathname;
   },
+
+  hash() {
+    return location.hash;
+  }
 };
 
 export default navigator;
