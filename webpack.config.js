@@ -1,5 +1,8 @@
 const path = require('path');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 const postcssConfigPath = path.resolve(process.cwd(), '.postcssrc.yml')
 
 const config = {
@@ -16,12 +19,14 @@ const config = {
       {
         test: /\.js$/,
         exclude: /node_modules|bower_components/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['env']
+            }
           }
-        }
+        ]
       },
       {
         test: /\.(scss|sass|css)$/i,
@@ -55,6 +60,7 @@ const config = {
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
+    new UglifyJSPlugin()
   ]
 };
 
