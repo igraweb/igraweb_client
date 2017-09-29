@@ -8,7 +8,8 @@ const postcssConfigPath = path.resolve(process.cwd(), '.postcssrc.yml')
 const config = {
   entry: {
     igraweb: './src/igraweb_entry.js',
-    igraweb_public: './src/public_client_entry.js'
+    igraweb_public: './src/public_client_entry.js',
+    polyfills: './src/polyfills.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist/bundles'),
