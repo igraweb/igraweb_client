@@ -67,10 +67,7 @@ var router = {
    * @public
    */
   redirect(pathOrPathName, options = {}) {
-    const { mount = true } = options;
-    let path = this.path(pathOrPathName);
-
-    if (mount) { path = config.mount + path; }
+    const path = this.path(pathOrPathName, options.mount);
 
     this.navigator.replace(path);
   },
@@ -82,8 +79,8 @@ var router = {
    * @method path
    * @private
    */
-  isAt(pathOrPathName) {
-    var path = this.path(pathOrPathName);
+  isAt(pathOrPathName, options = {}) {
+    const path = this.path(pathOrPathName, options.mount);
 
     return this.navigator.path() === path;
   },
@@ -92,8 +89,10 @@ var router = {
    * @method path
    * @private
    */
-  path(pathOrPathName) {
-    return this.paths[pathOrPathName] || pathOrPathName;
+  path(pathOrPathName, mount = false) {
+    const path = this.paths[pathOrPathName] || pathOrPathName;
+
+    return mount ? config.mount + path : path;
   },
 };
 
