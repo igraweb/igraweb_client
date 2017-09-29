@@ -89,7 +89,7 @@ var router = {
    * @method path
    * @private
    */
-  path(pathOrPathName, mount = false) {
+  path(pathOrPathName, mount = true) {
     const path = this.paths[pathOrPathName] || pathOrPathName;
 
     return mount ? config.mount + path : path;
