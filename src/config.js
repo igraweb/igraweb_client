@@ -35,15 +35,6 @@ var config = {
   api_site_key: 'enter-your-key',
 
   /**
-   * Whether or not the test suite should be run on every request.
-   *
-   * @property runTests
-   * @default true
-   * @public
-   */
-  runTests: true,
-
-  /**
    * An object of listeners. (See `igraweb.loadListeners` and
    * `igraweb.registerModelListener`)
    *

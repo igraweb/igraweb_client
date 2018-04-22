@@ -41,10 +41,6 @@ var igraweb = {
    * @public
    */
   load() {
-    if (config.runTests) {
-      this.loadTests();
-    }
-
     if (router.isAt('login')) {
       router.unauthorized();
       return;
@@ -135,23 +131,6 @@ var igraweb = {
     Object.values(this.initializers).forEach(function initialize(fn) {
       fn();
     });
-  },
-
-  /**
-   * Run all tests. (See `config.runTests`.)
-   *
-   * @method
-   * @private
-   */
-  loadTests() {
-    require('./tests/router_test');
-    require('./tests/models/collection_test');
-    require('./tests/components/aside_test');
-    require('./tests/utils/navigator_test');
-    require('./tests/utils/current_user_test');
-    require('./tests/utils_test');
-
-    testRunner.load();
   },
 
   /**
