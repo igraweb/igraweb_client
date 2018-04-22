@@ -4,7 +4,7 @@
   "description": "A JavaScript Client for loading and updating data on the Igraweb Content API.",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha",
+    "test": "node_modules/mocha/bin/mocha --recursive",
     "build": "(rm -r dist) && (babel src --presets babel-preset-es2015 --plugins transform-object-assign --out-dir dist) && (sass src/styles/app.sass dist/igraweb.css) && (cp -r ./src/fonts ./dist) && (node_modules/webpack/bin/webpack.js)",
     "prepublish": "npm run build",
     "doc:server": "./node_modules/yuidocjs/lib/cli.js --server 5000 src"
