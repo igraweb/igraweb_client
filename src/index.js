@@ -10,7 +10,6 @@ import images from './repositories/images';
 import slots from './repositories/slots';
 import templates from './repositories/templates';
 import Utils from './utils';
-import testHelper from './tests/test_helper';
 
 import publicClient from './public_client';
 
@@ -25,8 +24,6 @@ const {
 const { resources, inlineResources } = config;
 
 const { loadContent, initNodes, replaceOuterHTML, replaceInnerHTML } = publicClient;
-
-const { testRunner } = testHelper;
 
 /**
  * The main igraweb app and entrypoint to the entire api

@@ -57,4 +57,3 @@ var Collection = function(links, models, repository) {
 };
 
 export default Collection;
-

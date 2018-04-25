@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 require('jsdom-global')();
+require('../support/session_storage');
 
 const {expect} = require('chai');
 

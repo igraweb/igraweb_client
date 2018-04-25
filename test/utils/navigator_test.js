@@ -1,19 +1,16 @@
 /*jshint esversion: 6 */
 
-import assert from 'assert';
+require('jsdom-global')();
 
-import navigator from '../../utils/navigator';
-import testHelper from '../test_helper';
+const {expect} = require('chai');
 
-const { testRunner } = testHelper;
+const navigator = require('../../dist/utils/navigator').default;
 
-var tests = {
-  test_interface() {
-    assert(typeof navigator.reload === 'function', 'reload should be a function');
-    assert(typeof navigator.replace === 'function', 'replace should be a function');
-    assert(typeof navigator.href === 'function', 'href should be a function');
-    assert(typeof navigator.path === 'function', 'path should be a function');
-  },
-};
-
-testRunner.run(tests);
+describe('navigator', () => {
+  it('respects the interface', () => {
+    expect(navigator.reload).to.be.a('function');
+    expect(navigator.replace).to.be.a('function');
+    expect(navigator.href).to.be.a('function');
+    expect(navigator.path).to.be.a('function');
+  });
+});
